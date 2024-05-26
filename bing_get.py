@@ -15,8 +15,9 @@ import json
 import schedule
 import time
 
-api_url = "https://api.vvhan.com/api/bing?type=json"#Bing每日一图当天壁纸API 返回格式为json
-dirname = "D:\\photo"#存储路径
+api_url = "https://api.vvhan.com/api/bing?type=json"#Bing每日一图当天壁纸API 返回格式为json   若api失效在本开源会及时更新可用api
+dirname = "D:\\photo"#存储路径   请修改
+runTime = "00:24"#预定的获取时间 mm:dd   请修改
 
 # 请求网页，跳转到最终 img 地址
 def get_img_url(raw_img_url=api_url):
@@ -54,7 +55,7 @@ def save_img(img_url, dirname):
 def get():
     save_img(get_img_url(), dirname)
 
-schedule.every().day.at("00:24").do(get)#注册定时任务
+schedule.every().day.at(runTime).do(get)#注册定时任务
 #get#测试时打开
 while True:
         schedule.run_pending()
