@@ -56,7 +56,7 @@ def get():
     save_img(get_img_url(), dirname)
 
 schedule.every().day.at(runTime).do(get)#注册定时任务
-#get#测试时打开
+#get()#测试时打开
 while True:
         schedule.run_pending()
         time.sleep(1)
