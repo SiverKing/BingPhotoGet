@@ -16,16 +16,17 @@ import schedule
 import time
 
 api_url = "https://api.vvhan.com/api/bing?type=json" # Bing每日一图当天壁纸API 返回格式为json   若api失效在本开源会及时更新可用api
-dirname = "D:\\MY\T" # 存储每一天的存储路径   请修改
-dirname2 = "D:\\MY\P" # 第二条存储位置 存放当天的图片 每日更新会覆盖前一天   请修改
+dirname = "D:\\MY\T" # 所有图片存储路径   请修改
+dirname2 = "D:\\MY\P" # 第二条存储位置 存放当天的图片 每日更新
 runTime = "00:24" # 预定的获取时间 mm:dd   请修改
-img_date = 20240527 # 存放当天时间
+
 
 # 请求网页，跳转到最终 img 地址
 def get_img_url(raw_img_url=api_url):
     print(requests.get(raw_img_url).text)
     r = json.loads(requests.get(raw_img_url).text)
     img_url = r['data']['url']  # 得到图片文件的网址
+    global img_date # 全局
     img_date = r['data']['date'] # 得到日期
     print('img_url:', img_url)
     print('img_date:', img_date)
