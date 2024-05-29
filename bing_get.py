@@ -6,6 +6,7 @@ Bing(必应)每日背景定时获取
 www.siverking.online
 
 首次提交:2024/05/27
+最新提交:2024/05/29 (修改打印json内容会请求两次问题)
 '''
 
 import urllib.request
