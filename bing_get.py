@@ -23,8 +23,9 @@ runTime = "00:24" # 预定的获取时间 mm:dd   请修改
 
 # 请求网页，跳转到最终 img 地址
 def get_img_url(raw_img_url=api_url):
-    print(requests.get(raw_img_url).text)
-    r = json.loads(requests.get(raw_img_url).text)
+    r = requests.get(raw_img_url).text
+    print(r)
+    r = json.loads(r)
     img_url = r['data']['url']  # 得到图片文件的网址
     global img_date # 全局
     img_date = r['data']['date'] # 得到日期
