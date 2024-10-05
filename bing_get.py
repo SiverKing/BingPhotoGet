@@ -7,6 +7,7 @@ www.siverking.online
 
 首次提交:2024/05/27
 最新提交:2024/05/29 (修改打印json内容会请求两次问题)
+最新提交:2024/10/05 (修改原API失效，替换为官方API)
 '''
 
 import urllib.request
@@ -16,20 +17,23 @@ import json
 import schedule
 import time
 
-api_url = "https://api.vvhan.com/api/bing?type=json" # Bing每日一图当天壁纸API 返回格式为json   若api失效在本开源会及时更新可用api
+api_url = "https://api.vvhan.com/api/bing?type=json" # (已失效) Bing每日一图当天壁纸API 返回格式为json   若api失效在本开源会及时更新可用api
 dirname = "D:\\MY\T" # 所有图片存储路径   请修改
 dirname2 = "D:\\MY\P" # 第二条存储位置 存放当天的图片 每日更新
 runTime = "00:24" # 预定的获取时间 mm:dd   请修改
 
+# Bing每日一图的API地址，返回JSON格式数据
+BING_URL = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US" # Bing官方API接口，要获取国际站的将cn.bing.com 换成 www.bing.com
 
 # 请求网页，跳转到最终 img 地址
-def get_img_url(raw_img_url=api_url):
-    r = requests.get(raw_img_url).text
-    print(r)
-    r = json.loads(r)
-    img_url = r['data']['url']  # 得到图片文件的网址
-    global img_date # 全局
-    img_date = r['data']['date'] # 得到日期
+def get_img_url(raw_img_url=BING_URL):
+    data = requests.get(raw_img_url).text
+    print(data)
+    data = json.loads(data)
+    img_url = "https://cn.bing.com" + data['images'][0]['url']  # 得到图片文件的网址
+    global img_date
+    img_date = data['images'][0]['enddate'] # 得到日期
+    # img_date = oneDayAgo(0)
     print('img_url:', img_url)
     print('img_date:', img_date)
     return img_url
