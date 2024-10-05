@@ -1,5 +1,6 @@
 # Chinese ReadMe
 
+
 ## BingPhotoGet
 获取Bing（必应）每日壁纸/一图/背景
 
@@ -14,6 +15,6 @@ www.siver.top , www.siverking.online (备用)
 Get Bing daily wallpaper/image/background
 
 **author**:Siver/SiverKing
-www.siver.top , www.siverking.online (备用)
+www.siver.top , www.siverking.online (standby)
 
 **Usage method**:Out of the box, set the scheduled time, storage path, and run **bing_get.py** on your PC or server. No long boot or long running conditions, delete the timing code to keep **get()** Run once a day.
